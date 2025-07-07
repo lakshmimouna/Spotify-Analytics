@@ -1,0 +1,12 @@
+.player {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.player__body {
+  display: flex;
+  flex: 1;
+  height: 100%;
+}

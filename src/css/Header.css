@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  color: white;
+  padding: 20px;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.header__left {
+  flex: 0.5;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 30px;
+  color: white;
+  align-items: center;
+}
+
+.header__left > input {
+  border: none;
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  outline: none;
+  padding: 5px;
+}
+
+.header__left > input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.header__right > h4 {
+  margin-left: 10px;
+  color: white;
+}
