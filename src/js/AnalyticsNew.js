@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Analytics.css";
+import "../css/Analytics.css";
 import { useDataLayerValue } from "./DataLayer";
 import AnalyticsAPI from "./services/analyticsAPI";
 import Sidebar from "./Sidebar";

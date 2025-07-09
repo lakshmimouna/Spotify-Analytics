@@ -1,49 +1,21 @@
-import React, { useRef } from 'react';
-import './RecentSongsPage.css';
+import React from 'react';
+import '../css/RecentSongsPage.css';
 
 function RecentSongsPage({ recent_tracks }) {
-  const carouselRef = useRef(null);
   const recentTracks = recent_tracks?.items || [];
 
   if (!recentTracks.length) return <div className="loading">No recent tracks data available...</div>;
-
-  const scrollCarousel = (direction) => {
-    if (carouselRef.current) {
-      const isMobile = window.innerWidth <= 768;
-      // More precise calculation: card width + gap
-      const cardWidth = isMobile ? 250 : 300;
-      const gap = 20;
-      const scrollAmount = cardWidth + gap;
-      
-      const currentScroll = carouselRef.current.scrollLeft;
-      const targetScroll = direction === 'left' 
-        ? Math.max(0, currentScroll - scrollAmount)
-        : currentScroll + scrollAmount;
-      
-      carouselRef.current.scrollTo({
-        left: targetScroll,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   return (
     <div className="recent__songs__page">
       <div className="page__header">
         <h1>⏰ Recent Songs</h1>
-        <p>Your listening activity timeline in a cinematic experience</p>
+        <p>Your listening activity timeline</p>
       </div>
 
-      <div className="recent__carousel__container">
-        <button className="carousel__nav carousel__nav--left" onClick={() => scrollCarousel('left')}>
-          ‹
-        </button>
-        <button className="carousel__nav carousel__nav--right" onClick={() => scrollCarousel('right')}>
-          ›
-        </button>
-        
-        <div className="recent__carousel" ref={carouselRef}>
-          {recentTracks.slice(0, 10).map((item, index) => (
+      <div className="recent__grid__container">
+        <div className="recent__grid">
+          {recentTracks.slice(0, 12).map((item, index) => (
             <div key={`${item.track.id}-${index}`} className="recent__card">
               <div className="recent__card__image__container">
                 <img 

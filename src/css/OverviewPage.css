@@ -53,23 +53,164 @@
   letter-spacing: 1px;
 }
 
-/* Time Chart Container - Full Width */
-.time__chart__container {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(15px);
-  border-radius: 20px;
-  padding: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+
+
+
+
+
+
+/* Two Column Layout */
+.overview__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
   margin-top: 20px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.time__chart__container h2 {
-  margin: 0 0 5px 0;
-  font-size: 24px;
+/* Chart Section - Left Side */
+.chart__section {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.chart__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.chart__header h2 {
+  margin: 0;
+  font-size: 22px;
+  background: linear-gradient(135deg, #1ed15e, #1aa34a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.time__period__selector {
+  display: flex;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.period__btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.period__btn:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.period__btn.active {
+  background: linear-gradient(135deg, #1ed15e, #1aa34a);
+  color: black;
+  box-shadow: 0 4px 15px rgba(30, 209, 94, 0.4);
+}
+
+.bar__chart__container {
+  display: flex;
+  align-items: end;
+  gap: 15px;
+  height: 300px;
+  padding: 20px 0;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.bar__column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.bar__wrapper {
+  flex: 1;
+  width: 100%;
+  max-width: 40px;
+  display: flex;
+  align-items: end;
+  margin-bottom: 10px;
+}
+
+.bar__fill {
+  width: 100%;
+  height: 0%;
+  border-radius: 6px 6px 0 0;
+  transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.bar__fill::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.bar__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 4px;
+}
+
+.bar__value {
+  font-size: 11px;
+  color: #1ed15e;
+  font-weight: 700;
+}
+
+/* Recently Played Section - Right Side */
+.recent__tracks__section {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Right Section */
+.right__section {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.right__section h2 {
+  margin: 0 0 25px 0;
+  font-size: 22px;
   text-align: center;
   background: linear-gradient(135deg, #1ed15e, #1aa34a);
   -webkit-background-clip: text;
@@ -77,162 +218,216 @@
   background-clip: text;
 }
 
-/* Total Summary */
-.total__summary {
-  text-align: center;
-  margin: 30px 0;
-  padding: 20px;
+.stats__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.total__hours {
-  font-size: 36px;
-  font-weight: 900;
-  color: #1ed15e;
-  text-shadow: 0 0 20px rgba(30, 209, 94, 0.5);
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 5px;
-  margin-bottom: 8px;
+.stats__placeholder p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  font-style: italic;
 }
 
-.total__hours span {
-  font-size: 18px;
-  color: #b3b3b3;
-  font-weight: 600;
+.recent__tracks__section h2 {
+  margin: 0 0 25px 0;
+  font-size: 22px;
+  text-align: center;
+  background: linear-gradient(135deg, #1ed15e, #1aa34a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.total__summary p {
-  margin: 0;
-  color: #b3b3b3;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-/* Horizontal Bar Chart */
-.bar__chart {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-  margin-top: 30px;
-}
-
-.bar__item {
+.recent__tracks__list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
-.bar__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.bar__label {
+.recent__track__item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 15px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
-.bar__icon {
-  font-size: 16px;
+.recent__track__item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(30, 209, 94, 0.3);
+  transform: translateX(5px);
 }
 
-.bar__name {
-  font-weight: 600;
-  color: white;
-}
-
-.bar__stats {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.bar__hours {
+.track__number {
+  font-size: 14px;
   font-weight: 700;
   color: #1ed15e;
+  min-width: 25px;
+  text-align: center;
 }
 
-.bar__percentage {
-  color: #b3b3b3;
+.track__image__container {
+  flex-shrink: 0;
+}
+
+.track__image {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.track__details {
+  flex: 1;
+  min-width: 0;
+}
+
+.track__name {
   font-size: 14px;
-}
-
-.bar__track {
-  height: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 4px;
   overflow: hidden;
-  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.bar__fill {
-  height: 100%;
-  width: 0%;
-  border-radius: 4px;
-  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
+.track__artist {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.bar__fill::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 3px;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 0 4px 4px 0;
+.track__time {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
 }
+
+
 
 @media (max-width: 768px) {
-  .overview__stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .time__chart__container {
-    padding: 30px;
-  }
-  
-  .total__hours {
-    font-size: 28px;
-  }
-  
-  .bar__chart {
+  .overview__content {
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 20px;
   }
   
-  .bar__item {
-    gap: 6px;
+  .chart__section,
+  .recent__tracks__section {
+    padding: 20px;
+  }
+  
+  .chart__header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+  
+  .chart__header h2 {
+    text-align: center;
+  }
+  
+  .time__period__selector {
+    justify-content: center;
+  }
+  
+  .bar__chart__container {
+    height: 250px;
+    gap: 10px;
+  }
+  
+  .bar__wrapper {
+    max-width: 30px;
+  }
+  
+  .recent__track__item {
+    padding: 10px;
+    gap: 12px;
+  }
+  
+  .track__image {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .track__name {
+    font-size: 13px;
+  }
+  
+  .track__artist {
+    font-size: 11px;
   }
 }
 
 @media (max-width: 480px) {
-  .time__chart__container {
-    padding: 20px;
+  .chart__section,
+  .recent__tracks__section {
+    padding: 15px;
   }
   
-  .total__hours {
-    font-size: 24px;
+  .chart__header {
+    margin-bottom: 20px;
   }
   
-  .bar__chart {
-    gap: 12px;
+  .chart__header h2 {
+    font-size: 20px;
   }
   
-  .bar__header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+  .period__btn {
+    padding: 6px 12px;
+    font-size: 12px;
   }
   
-  .bar__stats {
-    align-self: flex-end;
+  .bar__chart__container {
+    height: 200px;
+    gap: 8px;
+  }
+  
+  .bar__wrapper {
+    max-width: 25px;
+  }
+  
+  .bar__label {
+    font-size: 10px;
+  }
+  
+  .bar__value {
+    font-size: 9px;
+  }
+  
+  .recent__track__item {
+    padding: 8px;
+    gap: 10px;
+  }
+  
+  .track__image {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .track__number {
+    min-width: 20px;
+    font-size: 12px;
+  }
+  
+  .track__name {
+    font-size: 12px;
+  }
+  
+  .track__artist {
+    font-size: 10px;
   }
 }

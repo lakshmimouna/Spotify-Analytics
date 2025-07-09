@@ -92,30 +92,6 @@ const getTopTracks = async (accessToken) => {
   }
 };
 
-const getListeningHabits = async (accessToken) => {
-  try {
-    const response = await fetch(`${API_BASE_URL}/analytics/listening-habits`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ access_token: accessToken })
-    });
-    
-    const data = await response.json();
-    
-    if (!data.success) {
-      throw new Error(data.error || 'Listening habits request failed');
-    }
-    
-    return data.data || {};
-    
-  } catch (error) {
-    console.error('❌ Error fetching listening habits:', error);
-    throw error;
-  }
-};
-
 const getAnalyticsOverview = async (accessToken) => {
   try {
     const response = await fetch(`${API_BASE_URL}/analytics/overview`, {
@@ -145,7 +121,6 @@ const AnalyticsAPI = {
   getCompleteAnalytics,
   getTopArtists,
   getTopTracks,
-  getListeningHabits,
   getAnalyticsOverview
 };
 

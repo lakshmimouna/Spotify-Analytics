@@ -1,5 +1,5 @@
 import React from "react";
-import "./Body.css";
+import "../css/Body.css";
 import Header from "./Header";
 import Analytics from "./Analytics";
 

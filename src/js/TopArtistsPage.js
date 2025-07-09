@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import './TopArtistsPage.css';
+import '../css/TopArtistsPage.css';
 
 function TopArtistsPage({ top_artists }) {
   const carouselRef = useRef(null);

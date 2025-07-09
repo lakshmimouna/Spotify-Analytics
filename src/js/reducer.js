@@ -8,6 +8,7 @@ export const initialState = {
   top_tracks: null,      // Add this
   top_artists: null,     // Add this
   recent_tracks: null,   // Add this
+  analytics_tab: 'overview', // Add this for analytics navigation
   token: null,
 };
 
@@ -61,6 +62,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         recent_tracks: action.recent_tracks,
+      };
+
+    case "SET_ANALYTICS_TAB":   // Add this for analytics navigation
+      return {
+        ...state,
+        analytics_tab: action.analytics_tab,
       };
 
     case "SET_PLAYING":

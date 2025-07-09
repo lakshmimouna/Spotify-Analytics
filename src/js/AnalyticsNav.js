@@ -1,14 +1,12 @@
 import React from 'react';
-import './AnalyticsNav.css';
+import '../css/AnalyticsNav.css';
 
 function AnalyticsNav({ activeTab, setActiveTab }) {
   const tabs = [
     { id: 'overview', label: 'Overview', icon: '📊' },
-    { id: 'listening-habits', label: 'Listening Habits', icon: '🎧' },
     { id: 'top-artists', label: 'Top Artists', icon: '🎤' },
     { id: 'top-tracks', label: 'Top Tracks', icon: '🎵' },
     { id: 'recent-songs', label: 'Recent Songs', icon: '⏰' },
-    { id: 'categories', label: 'Categories', icon: '📂' },
     { id: 'time-spent', label: 'Time Spent', icon: '⏱️' }
   ];
 

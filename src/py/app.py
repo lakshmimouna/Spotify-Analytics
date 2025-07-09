@@ -3,7 +3,6 @@ from flask_cors import CORS
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import pandas as pd
-import numpy as np
 from datetime import datetime, timedelta
 import statistics
 from collections import Counter
@@ -32,10 +31,8 @@ class SpotifyAnalytics:
         if not features_data:
             return {}
         
-        # Convert to DataFrame for easier analysis
         df = pd.DataFrame(features_data)
         
-        # Statistical analysis
         feature_stats = {}
         numeric_features = ['danceability', 'energy', 'speechiness', 'acousticness', 
                           'instrumentalness', 'liveness', 'valence', 'tempo', 'loudness']
@@ -54,11 +51,8 @@ class SpotifyAnalytics:
                     }
                 }
         
-        # Key and mode analysis
         key_distribution = df['key'].value_counts().to_dict()
         mode_distribution = df['mode'].value_counts().to_dict()
-        
-        # Time signature analysis
         time_signature_dist = df['time_signature'].value_counts().to_dict()
         
         return {
@@ -79,11 +73,9 @@ class SpotifyAnalytics:
             all_genres.extend(genres)
             artist_genre_map[artist['name']] = genres
         
-        # Genre frequency analysis
         genre_counts = Counter(all_genres)
         total_genres = len(all_genres)
         
-        # Genre categories (simplified)
         genre_categories = {
             'pop': ['pop', 'indie pop', 'electropop', 'synthpop'],
             'rock': ['rock', 'indie rock', 'alternative rock', 'classic rock'],
@@ -118,7 +110,6 @@ class SpotifyAnalytics:
         
         personality_traits = {}
         
-        # Energy level
         energy_mean = features.get('energy', {}).get('mean', 0.5)
         if energy_mean > 0.7:
             personality_traits['energy_level'] = 'High Energy'
@@ -127,7 +118,6 @@ class SpotifyAnalytics:
         else:
             personality_traits['energy_level'] = 'Low Energy'
         
-        # Mood preference
         valence_mean = features.get('valence', {}).get('mean', 0.5)
         if valence_mean > 0.7:
             personality_traits['mood_preference'] = 'Positive/Happy'
@@ -136,11 +126,9 @@ class SpotifyAnalytics:
         else:
             personality_traits['mood_preference'] = 'Melancholic/Sad'
         
-        # Dance preference
         dance_mean = features.get('danceability', {}).get('mean', 0.5)
         personality_traits['dance_preference'] = 'High' if dance_mean > 0.7 else 'Moderate' if dance_mean > 0.4 else 'Low'
         
-        # Acoustic preference
         acoustic_mean = features.get('acousticness', {}).get('mean', 0.5)
         personality_traits['acoustic_preference'] = 'Acoustic' if acoustic_mean > 0.6 else 'Electronic' if acoustic_mean < 0.3 else 'Mixed'
         
@@ -152,40 +140,33 @@ class AdvancedSpotifyAnalytics:
     
     def cluster_music_preferences(self, tracks_data):
         """Use ML to cluster user's music preferences"""
-        # Extract audio features for clustering
         track_ids = [track['id'] for track in tracks_data if track.get('id')]
         if not track_ids:
             return {'error': 'No valid track IDs found'}
         
         audio_features = self.sp.audio_features(track_ids)
         
-        # Create DataFrame
         df = pd.DataFrame([f for f in audio_features if f])
         
         if df.empty:
             return {'error': 'No audio features available'}
         
-        # Select features for clustering
         features = ['danceability', 'energy', 'speechiness', 'acousticness', 
                    'instrumentalness', 'liveness', 'valence', 'tempo']
         
-        # Ensure all features exist and drop NaN values
         available_features = [f for f in features if f in df.columns]
         X = df[available_features].dropna()
         
         if len(X) < 3:
             return {'error': f'Not enough data for clustering. Only {len(X)} valid tracks found.'}
         
-        # Normalize features
         scaler = StandardScaler()
         X_scaled = scaler.fit_transform(X)
         
-        # Perform clustering
-        n_clusters = min(5, max(2, len(X) // 5))  # Adaptive cluster count
+        n_clusters = min(5, max(2, len(X) // 5))
         kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
         clusters = kmeans.fit_predict(X_scaled)
         
-        # Analyze clusters
         cluster_analysis = {}
         for i in range(n_clusters):
             cluster_mask = clusters == i
@@ -213,7 +194,6 @@ class AdvancedSpotifyAnalytics:
     def temporal_listening_analysis(self, timeframe_days=30):
         """Analyze listening patterns over time"""
         try:
-            # Get recently played tracks
             after = int((datetime.now() - timedelta(days=timeframe_days)).timestamp() * 1000)
             recent = self.sp.current_user_recently_played(limit=50, after=after)
             
@@ -237,15 +217,12 @@ class AdvancedSpotifyAnalytics:
             if df.empty:
                 return {'error': 'No recent listening data available'}
             
-            # Analysis
             hourly_pattern = df['hour'].value_counts().sort_index().to_dict()
             daily_pattern = df['day_of_week'].value_counts().sort_index().to_dict()
             
-            # Peak listening times
             peak_hour = df['hour'].mode().iloc[0] if not df['hour'].mode().empty else None
             peak_day = df['day_of_week'].mode().iloc[0] if not df['day_of_week'].mode().empty else None
             
-            # Day names mapping
             day_names = {0: 'Monday', 1: 'Tuesday', 2: 'Wednesday', 3: 'Thursday', 
                         4: 'Friday', 5: 'Saturday', 6: 'Sunday'}
             
@@ -258,7 +235,7 @@ class AdvancedSpotifyAnalytics:
                 'daily_distribution': daily_pattern,
                 'peak_listening_hour': peak_hour,
                 'peak_listening_day': day_names.get(peak_day, peak_day),
-                'listening_intensity': round(len(df) / timeframe_days, 2),  # avg plays per day
+                'listening_intensity': round(len(df) / timeframe_days, 2),
                 'most_played_track': df['track_name'].mode().iloc[0] if not df['track_name'].mode().empty else None
             }
         except Exception as e:
@@ -268,16 +245,14 @@ class AdvancedSpotifyAnalytics:
         """Analyze recommendation patterns and diversity"""
         try:
             if not seed_tracks:
-                # Get user's top tracks as seeds
                 top_tracks = self.sp.current_user_top_tracks(limit=5)['items']
                 seed_tracks = [track['id'] for track in top_tracks]
             
             if not seed_tracks:
                 return {'error': 'No seed tracks available for recommendations'}
             
-            # Get recommendations
             recommendations = self.sp.recommendations(
-                seed_tracks=seed_tracks[:5],  # API limit
+                seed_tracks=seed_tracks[:5],
                 limit=limit
             )
             
@@ -286,12 +261,10 @@ class AdvancedSpotifyAnalytics:
             if not rec_tracks:
                 return {'error': 'No recommendations received'}
             
-            # Analyze recommendation diversity
             genres = set()
             artists = set()
             
             for track in rec_tracks:
-                # Get artist info for genres
                 try:
                     artist_id = track['artists'][0]['id']
                     artist_info = self.sp.artist(artist_id)
@@ -300,7 +273,6 @@ class AdvancedSpotifyAnalytics:
                 except:
                     continue
             
-            # Get audio features for recommendations
             rec_ids = [track['id'] for track in rec_tracks]
             rec_audio_features = self.sp.audio_features(rec_ids)
             
@@ -308,7 +280,7 @@ class AdvancedSpotifyAnalytics:
                 'total_recommendations': len(rec_tracks),
                 'genre_diversity': len(genres),
                 'artist_diversity': len(artists),
-                'unique_genres': list(genres)[:10],  # Limit for response size
+                'unique_genres': list(genres)[:10],
                 'recommendation_audio_profile': self._analyze_audio_features(rec_audio_features),
                 'popularity_distribution': {
                     'min': min([track['popularity'] for track in rec_tracks]),
@@ -351,14 +323,12 @@ def get_comprehensive_analytics():
     try:
         start_time = time.time()
         
-        # Get Spotify client
         sp = get_spotify_client()
         if not sp:
             return jsonify({'error': 'Spotify authentication failed'}), 401
         
         analytics = SpotifyAnalytics(sp)
         
-        # Get user's data
         top_tracks_short = sp.current_user_top_tracks(limit=50, time_range='short_term')['items']
         top_tracks_medium = sp.current_user_top_tracks(limit=50, time_range='medium_term')['items']
         top_tracks_long = sp.current_user_top_tracks(limit=50, time_range='long_term')['items']
@@ -366,7 +336,6 @@ def get_comprehensive_analytics():
         top_artists_short = sp.current_user_top_artists(limit=50, time_range='short_term')['items']
         top_artists_medium = sp.current_user_top_artists(limit=50, time_range='medium_term')['items']
         
-        # Comprehensive analysis
         results = {
             'timestamp': datetime.now().isoformat(),
             'time_ranges': {
@@ -389,11 +358,9 @@ def get_comprehensive_analytics():
             }
         }
         
-        # Music personality analysis
         short_term_features = results['time_ranges']['short_term']['audio_features']
         results['music_personality'] = analytics.calculate_music_personality(short_term_features)
         
-        # Comparative analysis
         results['comparative_analysis'] = {
             'energy_trend': {
                 'short_term': short_term_features.get('feature_statistics', {}).get('energy', {}).get('mean', 0),
@@ -425,16 +392,13 @@ def get_data_insights():
         
         analytics = SpotifyAnalytics(sp)
         
-        # Get comprehensive data
         recent_tracks = sp.current_user_recently_played(limit=50)['items']
         top_tracks = sp.current_user_top_tracks(limit=50)['items']
         saved_tracks = sp.current_user_saved_tracks(limit=50)['items']
         
-        # Extract track info
         recent_track_info = [item['track'] for item in recent_tracks]
         saved_track_info = [item['track'] for item in saved_tracks]
         
-        # Listening pattern analysis
         recent_timestamps = [item['played_at'] for item in recent_tracks]
         listening_hours = []
         
@@ -444,7 +408,6 @@ def get_data_insights():
         
         hourly_distribution = Counter(listening_hours)
         
-        # Track popularity analysis
         popularity_scores = [track.get('popularity', 0) for track in top_tracks]
         
         insights = {
@@ -475,7 +438,6 @@ def get_data_insights():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-# New Advanced Analytics Endpoints
 @app.route('/api/analytics/clustering', methods=['GET'])
 def get_music_clustering():
     try:
@@ -485,7 +447,6 @@ def get_music_clustering():
         
         advanced_analytics = AdvancedSpotifyAnalytics(sp)
         
-        # Get user's top tracks for clustering
         time_range = request.args.get('time_range', 'medium_term')
         limit = request.args.get('limit', 50, type=int)
         
@@ -544,7 +505,6 @@ def get_complete_analytics():
         analytics = SpotifyAnalytics(sp)
         advanced_analytics = AdvancedSpotifyAnalytics(sp)
         
-        # Get basic data
         top_tracks = sp.current_user_top_tracks(limit=50)['items']
         top_artists = sp.current_user_top_artists(limit=50)['items']
         
@@ -572,13 +532,11 @@ def get_complete_analytics():
 def get_spotify_client():
     """Initialize Spotify client with proper authentication"""
     try:
-        # Method 1: Get token from request headers (frontend passes token)
         auth_header = request.headers.get('Authorization')
         if auth_header and auth_header.startswith('Bearer '):
             token = auth_header.split(' ')[1]
             return spotipy.Spotify(auth=token)
         
-        # Method 2: Server-side OAuth using environment variables
         client_id = os.environ.get('SPOTIPY_CLIENT_ID')
         client_secret = os.environ.get('SPOTIPY_CLIENT_SECRET')
         redirect_uri = os.environ.get('SPOTIPY_REDIRECT_URI')

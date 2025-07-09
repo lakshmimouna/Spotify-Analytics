@@ -27,45 +27,30 @@
   font-weight: 300;
 }
 
-/* Main Carousel Container */
-.recent__carousel__container {
-  position: relative;
-  padding: 0 60px;
-  margin: 0 auto;
+/* Main Grid Container */
+.recent__grid__container {
   max-width: 1400px;
+  margin: 0 auto;
+  padding: 040px;
 }
 
-/* Horizontal Scrolling Carousel */
-.recent__carousel {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  padding: 20px 0;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  flex-wrap: nowrap;
-}
-
-.recent__carousel::-webkit-scrollbar {
-  display: none;
+/* Grid Layout */
+.recent__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 50px;
 }
 
 .recent__card {
-  flex: 0 0 300px;
-  min-width: 300px;
-  width: 300px;
+  width: 100%;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
-  padding: 10px;
+  padding: 15px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
-  display: inline-block;
-  white-space: normal;
 }
 
 .recent__card::before {
@@ -95,14 +80,19 @@
   position: relative;
   margin-bottom: 15px;
   z-index: 2;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  width: 100%;
 }
 
 .recent__card__image {
   width: 100%;
-  height: 300px;
+  height: 100%;
   object-fit: cover;
   border-radius: 12px;
   transition: transform 0.4s ease;
+  display: block;
 }
 
 .recent__card:hover .recent__card__image {
@@ -173,53 +163,7 @@
   gap: 4px;
 }
 
-/* Navigation Arrows */
-.carousel__nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(10px);
-  user-select: none;
-}
-
-.carousel__nav:hover {
-  background: rgba(30, 209, 94, 0.8);
-  border-color: rgba(30, 209, 94, 0.5);
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 8px 20px rgba(30, 209, 94, 0.3);
-}
-
-.carousel__nav--left {
-  left: 10px;
-}
-
-.carousel__nav--right {
-  right: 10px;
-}
-
-
-/* Ensure arrows are always visible */
-.recent__carousel__container .carousel__nav--left,
-.recent__carousel__container .carousel__nav--right {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: all;
-}
-
+/* Responsive Design */
 @media (max-width: 768px) {
   .recent__songs__page {
     padding: 20px 10px;
@@ -233,30 +177,16 @@
     font-size: 1rem;
   }
 
-  .recent__carousel__container {
-    padding: 0 30px;
+  .recent__grid__container {
+    padding: 0 10px;
+  }
+  
+  .recent__grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
   }
   
   .recent__card {
-    flex: 0 0 250px;
-    padding: 15px;
-  }
-  
-  .recent__card__image {
-    height: 200px;
-  }
-  
-  .carousel__nav {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
-
-  .carousel__nav--left {
-    left: 5px;
-  }
-
-  .carousel__nav--right {
-    right: 5px;
+    padding: 12px;
   }
 }
