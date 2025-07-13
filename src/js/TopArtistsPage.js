@@ -1,12 +1,9 @@
 import React, { useRef } from 'react';
 import '../css/TopArtistsPage.css';
-
 function TopArtistsPage({ top_artists }) {
   const carouselRef = useRef(null);
   const topArtists = top_artists?.items || [];
-
   if (!topArtists.length) return <div className="loading">No top artists data available...</div>;
-
   const scrollCarousel = (direction) => {
     if (carouselRef.current) {
       const isMobile = window.innerWidth <= 768;
@@ -14,26 +11,22 @@ function TopArtistsPage({ top_artists }) {
       const cardWidth = isMobile ? 250 : 300;
       const gap = 20;
       const scrollAmount = cardWidth + gap;
-      
       const currentScroll = carouselRef.current.scrollLeft;
       const targetScroll = direction === 'left' 
         ? Math.max(0, currentScroll - scrollAmount)
         : currentScroll + scrollAmount;
-      
       carouselRef.current.scrollTo({
         left: targetScroll,
         behavior: 'smooth'
       });
     }
   };
-
   return (
     <div className="top__artists__page">
       <div className="page__header">
         <h1>🌟 Featured Artists</h1>
         <p>Discover your most listened artists in a cinematic experience</p>
       </div>
-
       <div className="artists__carousel__container">
         <div className="artists__carousel" ref={carouselRef}>
           {topArtists.slice(0, 10).map((artist, index) => (
@@ -59,7 +52,6 @@ function TopArtistsPage({ top_artists }) {
             </div>
           ))}
         </div>
-        
         <button className="carousel__nav carousel__nav--left" onClick={() => scrollCarousel('left')}>
           ‹
         </button>
@@ -70,5 +62,4 @@ function TopArtistsPage({ top_artists }) {
     </div>
   );
 }
-
 export default TopArtistsPage;

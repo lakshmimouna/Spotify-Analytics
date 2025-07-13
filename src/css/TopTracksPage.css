@@ -1,14 +1,11 @@
-/* Top Tracks Page Styles */
 .top__tracks__page {
   color: white;
   min-height: 90vh;
 }
-
 .page__header {
   text-align: center;
   margin-bottom: 40px;
 }
-
 .page__header h1 {
   font-size: 3rem;
   font-weight: 800;
@@ -19,28 +16,22 @@
   background-clip: text;
   letter-spacing: -1px;
 }
-
 .page__header p {
   font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.7);
   margin: 0;
   font-weight: 300;
 }
-
-/* Main Grid Container */
 .tracks__grid__container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 40px;
 }
-
-/* Grid Layout */
 .tracks__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 50px;
 }
-
 .track__card {
   width: 100%;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
@@ -52,7 +43,6 @@
   position: relative;
   overflow: hidden;
 }
-
 .track__card::before {
   content: '';
   position: absolute;
@@ -65,17 +55,14 @@
   transition: opacity 0.4s ease;
   z-index: 1;
 }
-
 .track__card:hover::before {
   opacity: 1;
 }
-
 .track__card:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   border-color: rgba(30, 209, 94, 0.3);
 }
-
 .track__card__image__container {
   position: relative;
   margin-bottom: 15px;
@@ -85,7 +72,6 @@
   aspect-ratio: 1;
   width: 100%;
 }
-
 .track__card__image {
   width: 100%;
   height: 100%;
@@ -94,11 +80,9 @@
   transition: transform 0.4s ease;
   display: block;
 }
-
 .track__card:hover .track__card__image {
   transform: scale(1.05);
 }
-
 .track__card__rank {
   position: absolute;
   top: 12px;
@@ -112,12 +96,10 @@
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
-
 .track__card__info {
   z-index: 2;
   position: relative;
 }
-
 .track__card__name {
   font-size: 18px;
   font-weight: 700;
@@ -128,7 +110,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 .track__card__artist {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.8);
@@ -138,7 +119,6 @@
   white-space: nowrap;
   font-weight: 500;
 }
-
 .track__card__album {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.6);
@@ -148,7 +128,6 @@
   white-space: nowrap;
   font-weight: 400;
 }
-
 .track__card__stats {
   display: flex;
   justify-content: space-between;
@@ -156,36 +135,28 @@
   color: rgba(255, 255, 255, 0.7);
   font-weight: 600;
 }
-
 .track__card__stats span {
   display: flex;
   align-items: center;
   gap: 4px;
 }
-
-/* Responsive Design */
 @media (max-width: 768px) {
   .top__tracks__page {
     padding: 20px 10px;
   }
-
   .page__header h1 {
     font-size: 2.2rem;
   }
-
   .page__header p {
     font-size: 1rem;
   }
-
   .tracks__grid__container {
     padding: 0 10px;
   }
-  
   .tracks__grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
   }
-  
   .track__card {
     padding: 12px;
   }

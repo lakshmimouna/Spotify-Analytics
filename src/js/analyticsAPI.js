@@ -1,121 +1,80 @@
 const API_BASE_URL = 'http://localhost:5000/api';
-
 const healthCheck = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/health`);
     return await response.json();
   } catch (error) {
-    console.error('Health check failed:', error);
     throw error;
   }
 };
-
-const getCompleteAnalytics = async (accessToken) => {
+const getCompleteAnalytics = async (spotifyData) => {
   try {
-    console.log('🔄 Fetching complete analytics from Python backend...');
-    
     const response = await fetch(`${API_BASE_URL}/analytics/complete`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ access_token: accessToken })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ spotify_data: spotifyData })
     });
-    
     const data = await response.json();
-    
     if (!data.success) {
       throw new Error(data.error || 'Analytics request failed');
     }
-    
-    console.log('✅ Complete analytics received from Python:', data);
-    console.log('⚡ Performance metrics:', data.performance);
-    
-    // Return the full response including performance data
     return {
       data: data.data,
       performance: data.performance,
       generated_at: data.generated_at
     };
-    
   } catch (error) {
-    console.error('❌ Error fetching complete analytics:', error);
     throw error;
   }
 };
-
-const getTopArtists = async (accessToken) => {
+const getTopArtists = async (topArtistsData) => {
   try {
     const response = await fetch(`${API_BASE_URL}/analytics/top-artists`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ access_token: accessToken })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ top_artists_data: topArtistsData })
     });
-    
     const data = await response.json();
-    
     if (!data.success) {
       throw new Error(data.error || 'Top artists request failed');
     }
-    
     return data.data || [];
-    
   } catch (error) {
-    console.error('❌ Error fetching top artists:', error);
     throw error;
   }
 };
-
-const getTopTracks = async (accessToken) => {
+const getTopTracks = async (topTracksData) => {
   try {
     const response = await fetch(`${API_BASE_URL}/analytics/top-tracks`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ access_token: accessToken })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ top_tracks_data: topTracksData })
     });
-    
     const data = await response.json();
-    
     if (!data.success) {
       throw new Error(data.error || 'Top tracks request failed');
     }
-    
     return data.data || [];
-    
   } catch (error) {
-    console.error('❌ Error fetching top tracks:', error);
     throw error;
   }
 };
-
-const getAnalyticsOverview = async (accessToken) => {
+const getAnalyticsOverview = async (overviewData) => {
   try {
     const response = await fetch(`${API_BASE_URL}/analytics/overview`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ access_token: accessToken })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ overview_data: overviewData })
     });
-    
     const data = await response.json();
-    
     if (!data.success) {
       throw new Error(data.error || 'Analytics overview request failed');
     }
-    
     return data.data || {};
-    
   } catch (error) {
-    console.error('❌ Error fetching analytics overview:', error);
     throw error;
   }
 };
-
 const AnalyticsAPI = {
   healthCheck,
   getCompleteAnalytics,
@@ -123,5 +82,4 @@ const AnalyticsAPI = {
   getTopTracks,
   getAnalyticsOverview
 };
-
 export default AnalyticsAPI;

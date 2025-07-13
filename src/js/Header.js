@@ -3,10 +3,8 @@ import "../css/Header.css";
 import { useDataLayerValue } from "./DataLayer";
 import { Avatar } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-
 function Header({ spotify }) {
   const [{ user }, dispatch] = useDataLayerValue();
-
   return (
     <div className="header">
       <div className="header__left">
@@ -26,5 +24,4 @@ function Header({ spotify }) {
     </div>
   );
 }
-
 export default Header;

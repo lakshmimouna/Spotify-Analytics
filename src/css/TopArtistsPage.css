@@ -1,14 +1,11 @@
-/* Top Artists Page - Netflix Style Horizontal Carousel */
 .top__artists__page {
   color: white;
   min-height: 8vh;
 }
-
 .top__artists__page .page__header {
   padding: 15px 0 5px 0;
   text-align: center;
 }
-
 .page__header h1 {
   font-size: 48px;
   font-weight: 900;
@@ -18,14 +15,11 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
 .page__header p {
   font-size: 18px;
   color: #b3b3b3;
   margin: 0;
 }
-
-/* Main Carousel Container */
 .artists__carousel__container {
   position: relative;
   margin-top: 30px;
@@ -34,8 +28,6 @@
   overflow: hidden;
   box-sizing: border-box;
 }
-
-/* Horizontal Scrolling Carousel */
 .artists__carousel {
   display: flex;
   gap: 20px;
@@ -47,12 +39,9 @@
   -ms-overflow-style: none;
   flex-wrap: nowrap;
 }
-
 .artists__carousel::-webkit-scrollbar {
   display: none;
 }
-
-/* Artist Card */
 .artist__card {
   flex: 0 0 300px;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
@@ -65,7 +54,6 @@
   overflow: hidden;
   box-sizing: border-box;
 }
-
 .artist__card::before {
   content: '';
   position: absolute;
@@ -78,23 +66,18 @@
   transition: opacity 0.3s ease;
   pointer-events: none;
 }
-
 .artist__card:hover::before {
   opacity: 1;
 }
-
 .artist__card:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   border-color: rgba(30, 209, 94, 0.3);
 }
-
-/* Artist Card Image Container */
 .artist__card__image__container {
   position: relative;
   margin-bottom: 15px;
 }
-
 .artist__card__image {
   width: 100%;
   height: 260px;
@@ -102,11 +85,9 @@
   border-radius: 12px;
   transition: transform 0.3s ease;
 }
-
 .artist__card:hover .artist__card__image {
   transform: scale(1.05);
 }
-
 .artist__card__rank {
   position: absolute;
   top: 12px;
@@ -119,12 +100,9 @@
   font-weight: 700;
   box-shadow: 0 4px 15px rgba(30, 209, 94, 0.4);
 }
-
-/* Artist Card Info */
 .artist__card__info {
   text-align: center;
 }
-
 .artist__card__name {
   font-size: 18px;
   font-weight: 600;
@@ -134,7 +112,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 .artist__card__genres {
   font-size: 14px;
   color: #b3b3b3;
@@ -143,7 +120,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 .artist__card__stats {
   display: flex;
   justify-content: space-between;
@@ -152,8 +128,6 @@
   padding-top: 10px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
-
-/* Navigation Arrows */
 .carousel__nav {
   position: absolute;
   top: 50%;
@@ -176,23 +150,18 @@
   border: 2px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
 }
-
 .carousel__nav:hover {
   background: rgba(30, 209, 94, 0.9);
   transform: translateY(-50%) scale(1.1);
   box-shadow: 0 8px 25px rgba(30, 209, 94, 0.8);
   border-color: rgba(30, 209, 94, 0.6);
 }
-
 .carousel__nav--left {
   left: 15px;
 }
-
 .carousel__nav--right {
   right: 15px;
 }
-
-/* Ensure arrows are always visible */
 .artists__carousel__container .carousel__nav--left,
 .artists__carousel__container .carousel__nav--right {
   opacity: 1 !important;
@@ -200,8 +169,6 @@
   display: flex !important;
   pointer-events: auto !important;
 }
-
-/* Loading State */
 .loading {
   display: flex;
   justify-content: center;
@@ -210,73 +177,57 @@
   font-size: 18px;
   color: #b3b3b3;
 }
-
-/* Responsive Design */
 @media (max-width: 768px) {
   .page__header h1 {
     font-size: 36px;
   }
-  
   .artists__carousel__container {
     padding: 0 50px;
   }
-  
   .artist__card {
     flex: 0 0 250px;
     padding: 15px;
   }
-  
   .artist__card__image {
     height: 200px;
   }
-  
   .carousel__nav {
     width: 40px;
     height: 40px;
     font-size: 20px;
   }
-  
   .carousel__nav--left {
     left: 10px;
   }
-  
   .carousel__nav--right {
     right: 10px;
   }
 }
-
 @media (max-width: 480px) {
   .page__header h1 {
     font-size: 28px;
   }
-  
   .page__header p {
     font-size: 16px;
   }
-  
   .artists__carousel__container {
     padding: 0 40px;
   }
-  
   .artist__card {
     flex: 0 0 220px;
     padding: 12px;
   }
-  
   .artist__card__image {
     height: 180px;
   }
-  
   .carousel__nav {
     width: 35px;
     height: 35px;
     font-size: 18px;
   }
-  
   .carousel__nav--left {
     left: 5px;
   }
-  
   .carousel__nav--right {
     right: 5px;
   }

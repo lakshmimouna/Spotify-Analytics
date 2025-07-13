@@ -1,18 +1,14 @@
 import React from 'react';
 import '../css/TopTracksPage.css';
-
 function TopTracksPage({ top_tracks }) {
   const tracks = top_tracks?.items || [];
-
   if (!tracks.length) return <div className="loading">No top tracks data available...</div>;
-
   return (
     <div className="top__tracks__page">
       <div className="page__header">
         <h1>🎵 Featured Tracks</h1>
         <p>Discover your most listened tracks</p>
       </div>
-
       <div className="tracks__grid__container">
         <div className="tracks__grid">
           {tracks.slice(0, 12).map((track, index) => (
@@ -41,5 +37,4 @@ function TopTracksPage({ top_tracks }) {
     </div>
   );
 }
-
 export default TopTracksPage;

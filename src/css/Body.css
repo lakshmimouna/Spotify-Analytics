@@ -4,45 +4,26 @@
   overflow-y: overlay;
   flex: 0.8;
   color: white;
-  background: linear-gradient(135deg, #1e3264 0%, #0d1421 100%);
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 25%, #0d1421 50%, #1e3264 100%);
   position: relative;
 }
-
 .body::-webkit-scrollbar {
   display: none;
 }
-
-/* Content Container */
 .body__content {
   animation: fadeIn 0.5s ease-in;
 }
-
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 .analytics__container {
   animation: slideIn 0.4s ease-out;
 }
-
 @keyframes slideIn {
   from { opacity: 0; transform: translateX(-20px); }
   to { opacity: 1; transform: translateX(0); }
 }
-
-/* Responsive Design */
 @media (max-width: 768px) {
-  .body {
-    padding: 15px;
-  }
-}
-
-.body {
-  background: linear-gradient(135deg, 
-    #0f0f0f 0%, 
-    #1a1a1a 25%, 
-    #0d1421 50%, 
-    #1e3264 100%
-  );
+  .body { padding: 15px; }
 }

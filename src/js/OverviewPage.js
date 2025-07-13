@@ -1,47 +1,44 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../css/OverviewPage.css';
-
 function OverviewPage({ top_tracks, top_artists, recent_tracks }) {
   const [selectedPeriod, setSelectedPeriod] = useState('week');
   const chartRef = useRef(null);
   const recentTracks = recent_tracks?.items || [];
-
-  // Generate sample listening time data based on selected period
+  // Generate consistent random listening time data for display
   const getListeningTimeData = () => {
     const data = {
       week: [
-        { label: 'Mon', hours: 2.5 },
-        { label: 'Tue', hours: 3.2 },
-        { label: 'Wed', hours: 1.8 },
-        { label: 'Thu', hours: 4.1 },
-        { label: 'Fri', hours: 5.3 },
-        { label: 'Sat', hours: 6.7 },
-        { label: 'Sun', hours: 4.9 }
+        { label: 'Mon', hours: 2.3 },
+        { label: 'Tue', hours: 3.7 },
+        { label: 'Wed', hours: 1.9 },
+        { label: 'Thu', hours: 4.2 },
+        { label: 'Fri', hours: 5.8 },
+        { label: 'Sat', hours: 6.1 },
+        { label: 'Sun', hours: 4.5 }
       ],
       month: [
-        { label: 'Week 1', hours: 18.5 },
-        { label: 'Week 2', hours: 22.3 },
-        { label: 'Week 3', hours: 19.8 },
-        { label: 'Week 4', hours: 25.1 }
+        { label: 'Week 1', hours: 18.2 },
+        { label: 'Week 2', hours: 22.7 },
+        { label: 'Week 3', hours: 19.4 },
+        { label: 'Week 4', hours: 25.8 }
       ],
       year: [
-        { label: 'Jan', hours: 85.2 },
-        { label: 'Feb', hours: 72.8 },
-        { label: 'Mar', hours: 91.5 },
-        { label: 'Apr', hours: 88.3 },
-        { label: 'May', hours: 95.7 },
-        { label: 'Jun', hours: 102.1 },
-        { label: 'Jul', hours: 78.9 },
-        { label: 'Aug', hours: 89.4 },
-        { label: 'Sep', hours: 92.6 },
-        { label: 'Oct', hours: 87.2 },
-        { label: 'Nov', hours: 94.8 },
-        { label: 'Dec', hours: 99.3 }
+        { label: 'Jan', hours: 84.5 },
+        { label: 'Feb', hours: 73.2 },
+        { label: 'Mar', hours: 90.8 },
+        { label: 'Apr', hours: 87.6 },
+        { label: 'May', hours: 94.3 },
+        { label: 'Jun', hours: 101.7 },
+        { label: 'Jul', hours: 79.2 },
+        { label: 'Aug', hours: 88.9 },
+        { label: 'Sep', hours: 91.4 },
+        { label: 'Oct', hours: 86.8 },
+        { label: 'Nov', hours: 93.5 },
+        { label: 'Dec', hours: 98.1 }
       ]
     };
     return data[selectedPeriod];
   };
-
   // Animate bars on period change
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -55,19 +52,15 @@ function OverviewPage({ top_tracks, top_artists, recent_tracks }) {
         });
       }
     }, 300);
-    
     return () => clearTimeout(timer);
   }, [selectedPeriod]);
-
   const timeData = getListeningTimeData();
   const maxHours = Math.max(...timeData.map(d => d.hours));
-
   return (
     <div className="overview__page">
       <div className="page__header">
         <h1>Music Overview</h1>
       </div>
-
       {/* Two Column Layout */}
       <div className="overview__content">
         {/* Left Side - Recently Played Songs List */}
@@ -78,7 +71,6 @@ function OverviewPage({ top_tracks, top_artists, recent_tracks }) {
               const track = item.track;
               const playedAt = new Date(item.played_at);
               const timeAgo = Math.floor((Date.now() - playedAt.getTime()) / (1000 * 60 * 60));
-              
               return (
                 <div key={`${track.id}-${item.played_at}`} className="recent__track__item">
                   <div className="track__number">#{index + 1}</div>
@@ -99,7 +91,6 @@ function OverviewPage({ top_tracks, top_artists, recent_tracks }) {
             })}
           </div>
         </div>
-
         {/* Right Side - Listening Time Chart */}
         <div className="chart__section">
           <div className="chart__header">
@@ -125,7 +116,6 @@ function OverviewPage({ top_tracks, top_artists, recent_tracks }) {
               </button>
             </div>
           </div>
-          
           <div className="bar__chart__container" ref={chartRef}>
             {timeData.map((item, index) => (
               <div key={item.label} className="bar__column">
@@ -149,5 +139,4 @@ function OverviewPage({ top_tracks, top_artists, recent_tracks }) {
     </div>
   );
 }
-
 export default OverviewPage;

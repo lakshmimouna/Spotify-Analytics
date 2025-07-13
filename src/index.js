@@ -4,8 +4,6 @@ import './css/index.css';
 import App from './js/App';
 import { DataLayer } from './js/DataLayer';
 import reducer, { initialState } from './js/reducer';
-import reportWebVitals from './js/reportWebVitals';
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -14,5 +12,3 @@ root.render(
     </DataLayer>
   </React.StrictMode>
 );
-
-reportWebVitals();

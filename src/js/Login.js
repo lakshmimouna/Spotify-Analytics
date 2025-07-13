@@ -1,13 +1,11 @@
 import React from "react";
 import "../css/Login.css";
 import { getAccessUrl } from "./spotify";
-
 function Login() {
   const handleLogin = async () => {
     const authUrl = await getAccessUrl();
     window.location.href = authUrl;
   };
-
   return (
     <div className="login">
       <img
@@ -20,5 +18,4 @@ function Login() {
     </div>
   );
 }
-
 export default Login;

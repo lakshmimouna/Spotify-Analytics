@@ -6,17 +6,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import { useDataLayerValue } from "./DataLayer";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
-
 function Sidebar() {
   const [{analytics_tab}, dispatch] = useDataLayerValue();
-
   const handleAnalyticsNavigation = (tabId) => {
     dispatch({
       type: 'SET_ANALYTICS_TAB',
       analytics_tab: tabId
     });
   };
-  
   return (
     <div className="sidebar">
       <img
@@ -28,11 +25,9 @@ function Sidebar() {
       <SidebarOption Icon={SearchIcon} option="Search" />
       <SidebarOption Icon={LibraryMusicIcon} option="Your Library" />
       <SidebarOption Icon={AnalyticsIcon} option="Your Analytics" />
-      
       <br />
       <strong className="sidebar__title">🎵 Your Music Analytics</strong>
       <hr />
-
       <SidebarOption 
         option="📊 Overview" 
         onClick={() => handleAnalyticsNavigation('overview')}
@@ -46,11 +41,10 @@ function Sidebar() {
         onClick={() => handleAnalyticsNavigation('top-tracks')}
       />
       <SidebarOption 
-        option="⏰ Recent Songs" 
-        onClick={() => handleAnalyticsNavigation('recent-songs')}
+        option="🎭 Categories" 
+        onClick={() => handleAnalyticsNavigation('categories')}
       />
     </div>
   );
 }
-
 export default Sidebar;

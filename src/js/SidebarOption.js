@@ -1,6 +1,5 @@
 import React from "react";
 import "../css/SidebarOption.css";
-
 function SidebarOption({ option, Icon, onClick }) {
   return (
     <div className="sidebarOption" onClick={onClick}>
@@ -9,5 +8,4 @@ function SidebarOption({ option, Icon, onClick }) {
     </div>
   );
 }
-
 export default SidebarOption;

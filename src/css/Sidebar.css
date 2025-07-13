@@ -9,13 +9,11 @@
   color: white;
   background-color: #000000;
 }
-
 .sidebar__title {
   margin-left: 10px;
   padding: 5px;
   font-size: 12px;
 }
-
 .sidebar__logo {
   margin-right: 10px;
   object-fit: contain;

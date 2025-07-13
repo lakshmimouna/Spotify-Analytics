@@ -2,7 +2,6 @@ import React from "react";
 import "../css/Player.css";
 import Sidebar from "./Sidebar";
 import Body from "./Body";
-
 function Player({ spotify }) {
   return (
     <div className="player">
@@ -13,5 +12,4 @@ function Player({ spotify }) {
     </div>
   );
 }
-
 export default Player;

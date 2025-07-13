@@ -6,12 +6,10 @@
   height: 100vh;
   background-color: black;
 }
-
 .login > img {
   height: 100px;
   margin-bottom: 50px;
 }
-
 .login__button {
   background-color: #1ed15e;
   color: white;
@@ -23,7 +21,6 @@
   cursor: pointer;
   text-decoration: none;
 }
-
 .login__button:hover {
   background-color: #1aa34a;
 }

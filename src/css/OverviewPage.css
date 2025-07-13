@@ -1,4 +1,3 @@
-/* Overview Page Styles */
 .overview__page {
   padding: 20px;
   color: white;
@@ -7,14 +6,12 @@
   padding: 0px 0 0px 0;
   text-align: center;
 }
-
 .overview__stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   margin-bottom: 40px;
 }
-
 .stat__card {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -24,12 +21,10 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: transform 0.3s ease;
 }
-
 .stat__card:hover {
   transform: translateY(-5px);
   background: rgba(255, 255, 255, 0.15);
 }
-
 .stat__card h3 {
   font-size: 42px;
   margin: 0 0 10px 0;
@@ -38,12 +33,10 @@
   text-shadow: 0 0 20px rgba(30, 209, 94, 0.5);
   animation: pulse 2s ease-in-out infinite alternate;
 }
-
 @keyframes pulse {
   from { transform: scale(1); }
   to { transform: scale(1.05); }
 }
-
 .stat__card p {
   margin: 0;
   color: #b3b3b3;
@@ -52,15 +45,6 @@
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-
-
-
-
-
-
-
-
-/* Two Column Layout */
 .overview__content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -70,8 +54,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-
-/* Chart Section - Left Side */
 .chart__section {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(15px);
@@ -80,14 +62,12 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
-
 .chart__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
 }
-
 .chart__header h2 {
   margin: 0;
   font-size: 22px;
@@ -96,7 +76,6 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
 .time__period__selector {
   display: flex;
   gap: 8px;
@@ -105,7 +84,6 @@
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .period__btn {
   background: transparent;
   border: none;
@@ -117,18 +95,15 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .period__btn:hover {
   color: white;
   background: rgba(255, 255, 255, 0.1);
 }
-
 .period__btn.active {
   background: linear-gradient(135deg, #1ed15e, #1aa34a);
   color: black;
   box-shadow: 0 4px 15px rgba(30, 209, 94, 0.4);
 }
-
 .bar__chart__container {
   display: flex;
   align-items: end;
@@ -138,7 +113,6 @@
   border-bottom: 2px solid rgba(255, 255, 255, 0.1);
   position: relative;
 }
-
 .bar__column {
   flex: 1;
   display: flex;
@@ -146,7 +120,6 @@
   align-items: center;
   height: 100%;
 }
-
 .bar__wrapper {
   flex: 1;
   width: 100%;
@@ -155,7 +128,6 @@
   align-items: end;
   margin-bottom: 10px;
 }
-
 .bar__fill {
   width: 100%;
   height: 0%;
@@ -163,7 +135,6 @@
   transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
-
 .bar__fill::after {
   content: '';
   position: absolute;
@@ -174,21 +145,17 @@
   background: rgba(255, 255, 255, 0.3);
   border-radius: 4px;
 }
-
 .bar__label {
   font-size: 12px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.8);
   margin-bottom: 4px;
 }
-
 .bar__value {
   font-size: 11px;
   color: #1ed15e;
   font-weight: 700;
 }
-
-/* Recently Played Section - Right Side */
 .recent__tracks__section {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(15px);
@@ -197,8 +164,6 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
-
-/* Right Section */
 .right__section {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(15px);
@@ -207,7 +172,6 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
-
 .right__section h2 {
   margin: 0 0 25px 0;
   font-size: 22px;
@@ -217,7 +181,6 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
 .stats__placeholder {
   display: flex;
   align-items: center;
@@ -227,13 +190,11 @@
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .stats__placeholder p {
   color: rgba(255, 255, 255, 0.6);
   font-size: 16px;
   font-style: italic;
 }
-
 .recent__tracks__section h2 {
   margin: 0 0 25px 0;
   font-size: 22px;
@@ -243,13 +204,11 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
 .recent__tracks__list {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-
 .recent__track__item {
   display: flex;
   align-items: center;
@@ -260,13 +219,11 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
-
 .recent__track__item:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(30, 209, 94, 0.3);
   transform: translateX(5px);
 }
-
 .track__number {
   font-size: 14px;
   font-weight: 700;
@@ -274,11 +231,9 @@
   min-width: 25px;
   text-align: center;
 }
-
 .track__image__container {
   flex-shrink: 0;
 }
-
 .track__image {
   width: 50px;
   height: 50px;
@@ -286,12 +241,10 @@
   object-fit: cover;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .track__details {
   flex: 1;
   min-width: 0;
 }
-
 .track__name {
   font-size: 14px;
   font-weight: 600;
@@ -301,7 +254,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 .track__artist {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.7);
@@ -310,123 +262,96 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 .track__time {
   font-size: 11px;
   color: rgba(255, 255, 255, 0.5);
   font-weight: 500;
 }
-
-
-
 @media (max-width: 768px) {
   .overview__content {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
   .chart__section,
   .recent__tracks__section {
     padding: 20px;
   }
-  
   .chart__header {
     flex-direction: column;
     gap: 15px;
     align-items: stretch;
   }
-  
   .chart__header h2 {
     text-align: center;
   }
-  
   .time__period__selector {
     justify-content: center;
   }
-  
   .bar__chart__container {
     height: 250px;
     gap: 10px;
   }
-  
   .bar__wrapper {
     max-width: 30px;
   }
-  
   .recent__track__item {
     padding: 10px;
     gap: 12px;
   }
-  
   .track__image {
     width: 45px;
     height: 45px;
   }
-  
   .track__name {
     font-size: 13px;
   }
-  
   .track__artist {
     font-size: 11px;
   }
 }
-
 @media (max-width: 480px) {
   .chart__section,
   .recent__tracks__section {
     padding: 15px;
   }
-  
   .chart__header {
     margin-bottom: 20px;
   }
-  
   .chart__header h2 {
     font-size: 20px;
   }
-  
   .period__btn {
     padding: 6px 12px;
     font-size: 12px;
   }
-  
   .bar__chart__container {
     height: 200px;
     gap: 8px;
   }
-  
   .bar__wrapper {
     max-width: 25px;
   }
-  
   .bar__label {
     font-size: 10px;
   }
-  
   .bar__value {
     font-size: 9px;
   }
-  
   .recent__track__item {
     padding: 8px;
     gap: 10px;
   }
-  
   .track__image {
     width: 40px;
     height: 40px;
   }
-  
   .track__number {
     min-width: 20px;
     font-size: 12px;
   }
-  
   .track__name {
     font-size: 12px;
   }
-  
   .track__artist {
     font-size: 10px;
   }
