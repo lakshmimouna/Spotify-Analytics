@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import '../css/TopArtistsPage.css';
+import { clientId } from './spotify';
 function TopArtistsPage({ top_artists }) {
   const carouselRef = useRef(null);
   const topArtists = top_artists?.items || [];
@@ -26,6 +27,7 @@ function TopArtistsPage({ top_artists }) {
       <div className="page__header">
         <h1>🌟 Featured Artists</h1>
         <p>Discover your most listened artists in a cinematic experience</p>
+        <p style={{fontSize: '0.9em', color: '#888'}}>Client ID: {clientId}</p>
       </div>
       <div className="artists__carousel__container">
         <div className="artists__carousel" ref={carouselRef}>
@@ -41,9 +43,6 @@ function TopArtistsPage({ top_artists }) {
               </div>
               <div className="artist__card__info">
                 <h3 className="artist__card__name">{artist.name}</h3>
-                <p className="artist__card__genres">
-                  {artist.genres?.slice(0, 2).join(', ') || 'Music Artist'}
-                </p>
                 <div className="artist__card__stats">
                   <span>🔥 {artist.popularity}%</span>
                   <span>👥 {(artist.followers?.total / 1000000).toFixed(1)}M</span>

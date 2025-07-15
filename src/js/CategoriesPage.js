@@ -78,7 +78,11 @@ function CategoriesPage({ top_tracks, top_artists }) {
     .slice(0, 10);
   const getFilteredData = () => {
     if (selectedCategory === 'all') {
-      return { categories: topCategories };
+      // Show all categories with count > 0
+      const allCategories = Object.entries(categories)
+        .filter(([, data]) => data.count > 0)
+        .sort(([,a], [,b]) => b.count - a.count);
+      return { categories: allCategories };
     } else {
       const selectedCat = categories[selectedCategory];
       return { categories: [[selectedCategory, selectedCat]], selectedData: selectedCat };
@@ -177,25 +181,7 @@ function CategoriesPage({ top_tracks, top_artists }) {
                   </div>
                 </div>
               )}
-              {filteredData.selectedData.tracks.length > 0 && (
-                <div className="category-tracks">
-                  <h4>Top Tracks in {selectedCategory}</h4>
-                  <div className="tracks-list">
-                    {filteredData.selectedData.tracks.slice(0, 5).map((track) => (
-                      <div key={track.id} className="track-item">
-                        <img 
-                          src={track.album.images[2]?.url || track.album.images[0]?.url} 
-                          alt={track.name}
-                        />
-                        <div className="track-info">
-                          <h5>{track.name}</h5>
-                          <p>{track.artists.map(a => a.name).join(', ')}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+              {/* Remove Top Tracks for All Categories section as requested */}
             </div>
           )}
         </div>

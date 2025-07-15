@@ -1,26 +1,106 @@
+.login-bg {
+  background: url('/home/lakshmimouna/Desktop/Spotify-Analytics/src/img/Spotity.jpeg') center/cover no-repeat;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  filter: blur(8px) brightness(0.5) saturate(1.1);
+  transition: filter 0.3s;
+}
 .login {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: black;
+  min-height: 100vh;
+  background: transparent;
+  position: relative;
+  z-index: 1;
 }
-.login > img {
-  height: 100px;
-  margin-bottom: 50px;
+.login__modal {
+  background: #181818;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px 0 #000a;
+  padding: 48px 36px 32px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 340px;
+  max-width: 90vw;
+}
+.login__modal img {
+  height: 56px;
+  margin-bottom: 32px;
+}
+.login__title {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.login__subtitle {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 28px;
+  text-align: center;
 }
 .login__button {
-  background-color: #1ed15e;
-  color: white;
+  background-color: #1db954;
+  color: #fff;
   border: none;
-  border-radius: 50px;
-  padding: 20px 50px;
-  font-size: 18px;
-  font-weight: bold;
+  border-radius: 25px;
+  padding: 16px 48px;
+  font-size: 16px;
+  font-weight: 700;
   cursor: pointer;
   text-decoration: none;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  box-shadow: 0 2px 8px 0 #19141433;
+  transition: background 0.2s, transform 0.2s;
 }
-.login__button:hover {
-  background-color: #1aa34a;
+.login__button:hover, .login__button:focus {
+  background: #1ed760;
+  transform: scale(1.04);
+}
+.login__button:active {
+  background: #169c46;
+}
+.login__signup {
+  color: #b3b3b3;
+  font-size: 0.95rem;
+  margin-top: 24px;
+  text-align: center;
+}
+.login__signup a {
+  color: #1db954;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 4px;
+}
+.login__signup a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 600px) {
+  .login__modal {
+    padding: 28px 8vw 24px 8vw;
+    min-width: unset;
+  }
+  .login__modal img {
+    height: 40px;
+    margin-bottom: 20px;
+  }
+  .login__title {
+    font-size: 1.1rem;
+  }
+  .login__subtitle {
+    font-size: 0.95rem;
+  }
+  .login__button {
+    font-size: 14px;
+    padding: 12px 24px;
+  }
 }
