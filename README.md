@@ -17,23 +17,6 @@
 
 ---
 
-## 📌 Table of Contents
-
-- [About the Project](#-about-the-project)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Architecture](#-architecture)
-- [Getting Started](#-getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Frontend Setup](#frontend-setup-react)
-  - [Backend Setup](#backend-setup-python-flask)
-- [How Authentication Works](#-how-authentication-works-oauth-20-pkce)
-- [Project Structure](#-project-structure)
-- [Known Limitations](#-known-limitations)
-- [Future Improvements](#-future-improvements)
-
----
-
 ## 🎯 About the Project
 
 **Spotify Analytics Dashboard** is a personal data visualization tool built on top of the [Spotify Web API](https://developer.spotify.com/documentation/web-api). After logging in with your Spotify account, the app fetches your real listening data and presents it in a clean, interactive dashboard.
@@ -303,15 +286,6 @@ Spotify-Analytics/
 ├── package.json
 └── README.md
 ```
-
----
-
-## ⚠️ Known Limitations
-
-- **Listening time charts use estimated data** — Spotify's API doesn't expose total listening hours. The charts display data calculated from recently played track durations as an approximation.
-- **No token refresh** — Spotify access tokens expire after **1 hour**. The user must log in again after expiry.
-- **Search bar is non-functional** — The search input in the header is a UI placeholder.
-- **Python backend is optional** — `analyticsAPI.js` is implemented, but the React components currently fetch directly from Spotify; the backend is available for future integration.
 
 ---
 
