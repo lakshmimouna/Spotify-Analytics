@@ -93,11 +93,11 @@ Unlike a music player, this is purely an **analytics experience** — designed t
 │              Browser (React App)             │
 │                  Port 3000                   │
 │                                              │
-│  ┌──────────┐    ┌────────────────────────┐  │
-│  │ Sidebar  │    │     Analytics Hub      │  │
-│  │ Nav Tabs │───▶│ Overview | Artists     │  │
-│  └──────────┘    │ Tracks  | Categories  │  │
-│                  └────────────────────────┘  │
+│  ┌──────────┐     ┌────────────────────────┐ │
+│  │ Sidebar  │     │     Analytics Hub      │ │
+│  │ Nav Tabs │───▶│ Overview | Artists     │ │
+│  └──────────┘     │ Tracks  | Categories   │ │
+│                   └────────────────────────┘ │
 └─────────────────────┬────────────────────────┘
                       │ Spotify Web API calls
                       ▼
@@ -119,7 +119,7 @@ Unlike a music player, this is purely an **analytics experience** — designed t
 │                                              │
 │  POST /api/analytics/complete                │
 │  → Pandas: weekly/monthly listening time     │
-│  → Peak listening hours analysis            │
+│  → Peak listening hours analysis             │
 └──────────────────────────────────────────────┘
 ```
 
@@ -209,7 +209,7 @@ npm start
 
 The app will open at **http://127.0.0.1:3000**
 
-> ⚠️ Important: Use `127.0.0.1:3000` not `localhost:3000` — this must match the Redirect URI set in your Spotify App dashboard exactly.
+> ⚠️ Important: Use `127.0.0.1:3000`, not `localhost:3000` — this must match the Redirect URI set in your Spotify App dashboard exactly.
 
 ---
 
@@ -311,7 +311,7 @@ Spotify-Analytics/
 - **Listening time charts use estimated data** — Spotify's API doesn't expose total listening hours. The charts display data calculated from recently played track durations as an approximation.
 - **No token refresh** — Spotify access tokens expire after **1 hour**. The user must log in again after expiry.
 - **Search bar is non-functional** — The search input in the header is a UI placeholder.
-- **Python backend is optional** — `analyticsAPI.js` is implemented but the React components currently fetch directly from Spotify; the backend is available for future integration.
+- **Python backend is optional** — `analyticsAPI.js` is implemented, but the React components currently fetch directly from Spotify; the backend is available for future integration.
 
 ---
 
